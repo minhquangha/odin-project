@@ -1,0 +1,85 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    font-family: Impact, sans-serif;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    flex: 1;
+}
+
+.header {
+    background-color: rgba(34, 34, 46, 0.604);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 16px;
+    font-size: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calculator {
+    padding: 32px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.keypad {
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.display {
+    background-color: rgba(118, 130, 110, 0.891);
+    width: 280px;
+    height: 94px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    color: black;
+    font-size: 30px;
+}
+
+.line1 {
+    display: flex;
+    justify-content: flex-end;
+    margin-left:148px ;
+    padding-top: 20px;
+}
+.line2,
+.line3,
+.line4,
+.line5 {
+    display: flex;
+    justify-content: flex-end;
+}
+button {
+    height: 64px;
+    width: 64px;
+    margin: 5px;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 1000;
+    color: white;
+    background-color: darkslategrey;
+}
+
+button.ac {
+    background-color: red;
+}
