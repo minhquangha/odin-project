@@ -9,7 +9,7 @@ body {
 }
 .sidebar {
     background-color: oklch(70.7% 0.165 254.624);
-    height: 100vh;
+    height: 120vh;
     color: white;
     display: flex;
     flex-direction: column;
