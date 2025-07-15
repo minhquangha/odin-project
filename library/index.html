@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Library</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="sidebar">
+                <div class="info">
+                    <img src="./assets/avatar.png" alt="" />
+                    <h1>Minh Quang</h1>
+                </div>
+                <button class="addBook">New Book</button><button class="deleteBook">DeleteAll</button>
+            </div>
+            <div>
+                <h1>My Library</h1>
+                <div class="content"></div>
+            </div>
+            <dialog id="formDialog" >
+                <h1>Add new book here!!!</h1>
+                <form method="dialog">
+                    <p>
+                        <label for="name">Name: </label>
+                        <input type="text" name="name" class='name'/>
+                    </p>
+                    <p>
+                        <label for="author">Author: </label>
+                        <input type="text" name="author" class='author' />
+                    </p>
+                    <p><label for="pages">Pages</label> <input type="number" name='pages' class='pages'/></p>
+                    <button type='submit' class='submit'>Submit</button>
+                </form>
+            </dialog>
+        </div>
+    </body>
+    <script src="./scripts.js"></script>
+</html>
