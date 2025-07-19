@@ -1,76 +1,100 @@
+// JavaScript
 const htmlBoard = document.querySelector('.board');
+
 const Gameboard = () => {
-    let gameBoard = ['x', '', '', '', '', '', '', '', ''];
+    let gameBoard = ['', '', '', '', '', '', '', '', ''];
+
+    const getBoard = () => gameBoard;
+
+    const update = (index, marked) => {
+        if (gameBoard[index] === '') {
+            gameBoard[index] = marked;
+            render(); // cập nhật lại UI
+        }
+    };
+
+    const reset = () => {
+        gameBoard = ['', '', '', '', '', '', '', '', ''];
+        render();
+    };
+
     const render = () => {
         htmlBoard.innerHTML = '';
         gameBoard.forEach((square, index) => {
-            const newSquare = document.createElement('div', { class: block, id: index });
-            newSquare.innerHTML = `${square}`;
+            const newSquare = document.createElement('div');
+            newSquare.classList.add('block');
+            newSquare.setAttribute('data-index', index);
+            newSquare.textContent = square;
             htmlBoard.appendChild(newSquare);
         });
     };
-    const update = (index, marked) => {
-        gameBoard[index] = marked;
-    };
-    return { gameBoard, update, render };
+
+    return { getBoard, update, render, reset };
 };
 
-const board = Gameboard();
-const createPlayer = (name, marked) => {
-    return { name, marked };
-};
-const Game = () => {
-    let players = [];
-    let currentIndexPlayers;
-    let gameOver;
-    const start = () => {
-        const player1 = createPlayer('Quang', 'X');
-        const player2 = createPlayer('Kiet', 'O');
-        players.push(player1, player2);
-        gameOver = false;
-        currentIndexPlayers = 0;
-        board.render();
-        while (gameOver === false) {
-            const square = document.querySelectorAll('.block');
-            square.forEach((block) => {
-                block.addEventListener('click', () => {
-                    const index = block.id;
-                    const mark = players[currentIndexPlayers].marked;
-                    board.update(index, mark);
-                });
-            });
-            board.render();
-            gameOver = checkForWin(board.gameBoard);
-            if (gameOver) {
-                const noti = document.querySelector('.noti');
-                noti.textContent = `${players[currentIndexPlayers].name} win`;
-            }
-            currentIndexPlayers = 0 ? 1 : 0;
+const createPlayer = (name, marked) => ({ name, marked });
+
+const Game = (() => {
+    const board = Gameboard();
+    const player1 = createPlayer('Player 1', 'X');
+    const player2 = createPlayer('Player 2', 'O');
+    let currentPlayer = player1;
+    let gameOver = false;
+
+    const handleClick = (e) => {
+        const index = e.target.getAttribute('data-index');
+        if (index === null || gameOver) return;
+
+        const idx = parseInt(index);
+        const currentBoard = board.getBoard();
+
+        if (currentBoard[idx] !== '') return;
+
+        board.update(idx, currentPlayer.marked);
+
+        if (checkForWin(board.getBoard())) {
+            alert(`${currentPlayer.name} wins!`);
+            gameOver = true;
+            return;
         }
-    };
-    return { start };
-};
 
-function checkForWin(board) {
+        if (!board.getBoard().includes('')) {
+            alert("It's a draw!");
+            gameOver = true;
+            return;
+        }
+
+        // Chuyển lượt
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+    };
+
+    const start = () => {
+        board.reset();
+        currentPlayer = player1;
+        gameOver = false;
+        htmlBoard.removeEventListener('click', handleClick);
+        htmlBoard.addEventListener('click', handleClick);
+    };
+
+    return { start };
+})();
+
+const checkForWin = (board) => {
     const winningCombination = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
-        [3, 6, 9],
-        [1, 5, 9],
-        [3, 5, 7]
+        [0, 4, 8],
+        [2, 4, 6]
     ];
-    for (let combo in winningCombination) {
-        if (board[combo[0]] === board[combo[1]] || board[combo[2]] === board[combo[0]] || (board[combo[1]] === board[combo[2]] && board[combo[0]] != '' && board[combo[1]] != '' && board[combo[2] != ''])) {
-            return true;
-        }
-    }
-    return false;
-}
+    return winningCombination.some(([a, b, c]) => {
+        return board[a] && board[a] === board[b] && board[b] === board[c];
+    });
+};
 
-const game = Game();
 document.querySelector('button').addEventListener('click', () => {
-    game.start();
+    Game.start();
 });
