@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+    height: 100vh;
+}
+
+header{
+    background-color: antiquewhite;
+    align-items: flex-end;
+
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: var(--khaki);
+    height: 86.59;
+}
