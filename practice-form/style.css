@@ -1,0 +1,55 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    display: flex;
+    border: 1px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    max-width: fit-content;
+    padding: 5px;
+    align-self: center;
+    justify-self: center;
+}
+
+p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+p input {
+    flex: 1;
+}
+
+label {
+    width: 100px;
+}
+legend {
+    align-self: center;
+    font-weight: 900;
+    font-size: 25px;
+    border-bottom: 1px solid black;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+}
+
+button {
+    width: fit-content;
+    align-self: center;
+}
+
+input{
+    padding: 5px;
+}
+
+input:valid{
+    border: 3px solid green;
+}
+
+input:invalid{
+    border: 2px solid red;
+}

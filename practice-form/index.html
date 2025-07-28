@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <form novalidate>
+            <legend>Collections form</legend>
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" pattern="[\w\.-]+@[\w\.-]+\.\w+" required />
+                <span class="err-msg"></span>
+            </p>
+            <p>
+                <label for="country">Country</label>
+                <input type="text" name="country" id="country" />
+                <span class="err-msg"></span>
+            </p>
+            <p>
+                <label for="postalCode">Postal Code</label>
+                <input type="text" name="postalCode" id="postal-code" />
+                <span class="err-msg"></span>
+            </p>
+            <p>
+                <label for="pw">Password</label>
+                <input type="password" name="pw" id="pw" pattern="[A-Za-z0-9#?!@$%^&*-]{8,20}" minlength="8" maxlength="20" />
+                <span class="err-msg"></span>
+            </p>
+            <p>
+                <label for="cf-pw">Confirm Password</label>
+                <input type="password" name="cf-pw" id="cf-pw" pattern="[A-Za-z0-9#?!@$%^&*-]{8,20}" minlength="8" maxlength="20" data-password="" required />
+                <span class="err-msg"></span>
+            </p>
+            <button>Submit</button>
+        </form>
+    </body>
+    <script src="./scripts.js"></script>
+</html>
