@@ -1,8 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Card from './Card';
+import { useOutletContext } from 'react-router-dom';
 
 export default function HomePage() {
     const [products, setProducts] = useState([]);
+    const [count,setCount] = useOutletContext();
+    const dialog = useRef();
+
+    function countProduct() {
+        setCount(count+1);
+        dialog.current.classList.toggle("show");
+    }
+    function toggle() {
+        dialog.current.classList.toggle("show");
+    }
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
             .then((response) => response.json())
@@ -27,9 +38,13 @@ export default function HomePage() {
                 <h2>Product</h2>
                 <div className='products'>
                     {products.map((product) => {
-                        return <Card name={product.title} key={product.title} img={product.image} />;
+                        return <Card name={product.title} key={product.title} img={product.image} onClick={countProduct} />;
                     })}
                 </div>
+            </div>
+            <div className="dialog" ref={dialog}  >
+                    <h1>You added it </h1>
+                    <button onClick={toggle}>OK</button>
             </div>
         </div>
     );
