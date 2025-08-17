@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.header {
+    display: flex;
+    flex: 0 0 10vh;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+    color: white;
+
+    font-size: 2.5vh;
+}
+
+.footer {
+    flex: 0 0 8vh;
+    background-color: black;
+}
+
+.content {
+    flex: 1;
+    position: relative;
+}
+
+.header img {
+    height: 100%;
+    width: auto;
+    margin-left: 1%;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    transition: hover 0.5s ease-in-out;
+}
+.header a:hover {
+    color: green;
+}
+
+.headerUser {
+    display: flex;
+    gap: 40px;
+
+    margin-right: 1em;
+}
+
+.headerUser svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* User Page */
+.user {
+    height: 100%;
+    align-self: center;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-self: center;
+    padding: 2em;
+    font-size: 1.2em;
+    margin-top: 10%;
+}
+
+/* Home Page */
+.hero {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555555;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.heroContent {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #444444;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #222222;
+}
+
+/* Shop */
+.shop h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #222;
+
+    padding: 1em 0;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-color: #fff;
+    border: 1px solid #e0e0e0; /* viền nhẹ */
+    border-radius: 12px;
+    padding: 1.5em;
+    gap: 20px;
+    font-size: 1rem;
+
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: #333; /* chữ tối, dễ đọc */
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* đổ bóng tinh tế */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    height: 200px; /* bạn có thể chỉnh 200px / 300px */
+    object-fit: cover; /* ảnh không méo, cắt vừa khung */
+    border-radius: 8px;
+}
+
+.card button {
+    padding: 0.8em 1.8em;
+    border-radius: 30px;
+    background: #333; /* nền đen/xám đậm */
+    color: #fff; /* chữ trắng */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card button:hover {
+    background-color: #555555;
+    transform: translateY(-2px);
+}
+.card button:active {
+    background-color: #555555;
+    transform: translateY(0);
+}
