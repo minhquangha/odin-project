@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>HomePage</title>
+        <link rel="stylesheet" href="/public/style.css">
+    </head>
+    <body>
+        <%- include('navbar',{links:links})-%>
+        <ul>
+            <ul>
+                <% users.forEach((user)=>{%>
+                    <%- include('users',{user:user}) %>
+                <%})%>
+            </ul>
+        </ul>
+        <%- include('footer') -%>
+    </body>
+</html>
