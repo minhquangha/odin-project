@@ -1,0 +1,8 @@
+<html lang='en'>
+    <h1><%= title %></h1>
+    <div><% messages.forEach((message)=>{%>
+            <div>Message: <%=message.text%></div>
+            <div>Name: <%=message.user%></div>
+            <div>Date: <%=message.added%></div>
+    <%})%></div>
+</html>
