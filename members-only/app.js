@@ -7,6 +7,9 @@ const signupRouter= require('./routes/sign-up');
 app.set('views' , path.join(__dirname,'views'));
 app.set('view engine', 'ejs');
 
+//middleware for parsing data from form
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 //using router
 app.use('/sign-up',signupRouter);
