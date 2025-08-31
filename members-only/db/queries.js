@@ -10,5 +10,16 @@ async function insertUser(fullname, username, password) {
         console.log(error);
     }
 }
+async function getUser(username){
+    try{
+        const SQL =  'select username from members where members.username = $1';
+        const value = [username];
+        const data = await pool.query(SQL,value);
+        return data;
+    }catch(error){
+        console.log(' cannot find username');
+        throw error;
+    }
+}
 
-module.exports= {insertUser};
+module.exports= {insertUser,getUser};
