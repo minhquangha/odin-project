@@ -11,14 +11,28 @@ async function insertUser(fullname, username, password) {
     }
 }
 
-async function findUserByUserName(username){
-    const result = await pool.query("select * from members where username = $1 ",[username]);
+async function findUserByUserName(username) {
+    const result = await pool.query('select * from members where username = $1 ', [username]);
     return result.rows[0];
 }
 
-async function findUserById(id){
-    const user = await pool.query("select * from members where id=$1",[id]);
+async function findUserById(id) {
+    const user = await pool.query('select * from members where id=$1', [id]);
     return user.rows[0];
 }
 
-module.exports= {insertUser,findUserByUserName,findUserById};
+async function createMessages(userId, messages) {
+    const SQL = 'insert into messages (member_id,content) values ($1,$2)';
+    await pool.query(SQL, [userId, messages]);
+    console.log('done');
+}
+async function getMessages() {
+    const SQL = `SELECT messages.id, messages.content, messages.created_at, members.username
+       FROM messages
+       LEFT JOIN members ON messages.member_id = members.id
+       ORDER BY messages.created_at DESC`;
+    const rows = await pool.query(SQL);
+    return rows.rows;
+}
+
+module.exports = { insertUser, findUserByUserName, findUserById, createMessages,getMessages };
